@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env MODE=development webpack-dev-server --config webpack.config.js --color --inline",
     "build": "cross-env MODE=development webpack --config webpack.config.js"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.0",
