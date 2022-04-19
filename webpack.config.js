@@ -9,6 +9,7 @@ var OUTPUT_PATH = path.join(__dirname, 'dist');
 var PUBLIC_PATH = '.';
 var TEMPLATE_PATH = path.join(__dirname, 'index.html');
 var MODE = process.env.MODE;
+var PORT = 7777;
 
 var webpackConfig = {
 	entry: {
@@ -44,7 +45,15 @@ var webpackConfig = {
 			chunks: ['index'],
 			minify: true
 		})
-	]
+	],
+	devServer: {
+		host: 'localhost',
+		port: PORT,
+		hot: true,
+		//建立webpack-dev-server代理
+		proxy: {
+		}
+	}
 };
 
 module.exports = webpackConfig;
