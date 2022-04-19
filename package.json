@@ -1,0 +1,32 @@
+{
+  "name": "webpack_rebuild",
+  "version": "0.0.1",
+  "description": "webpack build exec",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env MODE=development webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamthen/webpack_rebuild.git"
+  },
+  "keywords": [
+    "webpack",
+    "exec"
+  ],
+  "author": "bimubai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreamthen/webpack_rebuild/issues"
+  },
+  "homepage": "https://github.com/dreamthen/webpack_rebuild#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  }
+}
