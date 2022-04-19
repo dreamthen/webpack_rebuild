@@ -46,6 +46,10 @@ var webpackConfig = {
 			minify: true
 		})
 	],
+	//webpack-dev-server的原理:
+	//webpack-dev-server通过给浏览器注入一个客户端,与浏览器建立websocket联系,通过自动触发webpack --watch监听项目文件内容是否发生变化,一旦发生变化就直接通过websocket告知浏览器中的客户端控制页面刷新,达到更新的效果.
+	//Rollup比webpack更易用,但其Treeshaking以及Scope Hoisting的亮点在之后也被webpack实现
+	//webpack hot属性实现网页热更新
 	devServer: {
 		host: 'localhost',
 		port: PORT,
