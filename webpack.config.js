@@ -8,7 +8,9 @@
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const open = require('open');
 const OUTPUT_PATH = path.resolve(__dirname, './dist');
 const PUBLIC_PATH = '.';
 const env = process.env.NODE_ENV || 'development';
@@ -21,10 +23,15 @@ const config = {
 	},
 	//环境模式,融入tree-shaking webpack.DefinePlugin(将环境变量NODE_ENV: mode自动引入至构建后的代码中)以及terser-webpack-plugin
 	mode: env,
+	optimization: {
+		minimizer: [
+			new CssMinimizerWebpackPlugin()
+		]
+	},
 	//出口
 	output: {
 		path: OUTPUT_PATH,
-		filename: 'index.[fullhash].js'
+		filename: 'index.[chunkhash].js'
 	},
 	//模块
 	module: {
@@ -35,6 +42,8 @@ const config = {
 			use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}]
 		}]
 	},
+	//控制台输出日志控制
+	stats: 'errors-warnings',
 	//插件
 	plugins: [
 		//清楚原打包后的固有资源
@@ -58,13 +67,23 @@ const config = {
 	//HMR热加载: 局部刷新原理,通过chunks新模块更换旧模块实现.在不进行整个页面刷新的情况下,提高了刷新效率,节省了时间.
 	devServer: {
 		host: 'localhost',
+		client: {
+			logging: 'info'
+		},
 		port: PORT,
 		//热更新
 		hot: true,
+		//对于打开浏览器的配置
+		open: {
+			app: {
+				name: open.apps.chrome
+			}
+		},
 		//代理
 		proxy: {
 		}
-	}
+	},
+	devtool: 'cheap-source-map'
 };
 
 module.exports = config;
