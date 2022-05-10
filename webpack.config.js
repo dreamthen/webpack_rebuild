@@ -58,11 +58,25 @@ const config = {
 			//css-loader在1.0之后不存在minimize压缩处理的属性
 			use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}],
 			exclude: /node_modules/
+		}, {
+			test: /\.less$/,
+			use: [MiniCssExtractPlugin.loader,
+				{loader: 'css-loader', options: {importLoaders: 2}},
+				{loader: 'postcss-loader'},
+				{loader: 'less-loader'}
+			]
+		}, {
+			test: /\.(sass|scss)$/,
+			use: [MiniCssExtractPlugin.loader,
+				{loader: 'css-loader', options: {importLoaders: 2}},
+				{loader: 'postcss-loader'},
+				{loader: 'sass-loader'}
+			]
 		}]
 	},
 	resolve: {
 		//导入模块时,省略后缀名
-		extensions: ['.ts', '.js', '.less', '.css']
+		extensions: ['.ts', '.js']
 	},
 	//控制台输出日志控制
 	stats: 'errors-warnings',

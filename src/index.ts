@@ -1,6 +1,6 @@
 const {writeWebpack} = require('./module');
 const NODE_ENV = process.env.NODE_ENV;
-require('./index.css');
+require('./index.less');
 
 let [a, b] = ['100', '666'];
 console.log(a, b);
