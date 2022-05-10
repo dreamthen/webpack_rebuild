@@ -11,6 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const open = require('open');
+
 const OUTPUT_PATH = path.resolve(__dirname, './dist');
 const PUBLIC_PATH = '.';
 const env = process.env.NODE_ENV || 'development';
@@ -19,7 +20,7 @@ const PORT = 9000;
 const config = {
 	//入口
 	entry: {
-		index: path.resolve(__dirname, './index.js')
+		index: './src/index.ts'
 	},
 	//环境模式,融入tree-shaking webpack.DefinePlugin(将环境变量NODE_ENV: mode自动引入至构建后的代码中)以及terser-webpack-plugin
 	mode: env,
@@ -31,16 +32,37 @@ const config = {
 	//出口
 	output: {
 		path: OUTPUT_PATH,
-		filename: 'index.[chunkhash].js'
+		filename: 'js/index.[chunkhash].js',
+		library: {
+			name: 'webpack_rebuild',
+			//'umd'构建打包出来的项目代码无法进行tree-shaking
+			type: 'umd'
+		}
 	},
 	//模块
 	module: {
 		//规则转换
 		rules: [{
+			test: /\.js[x]?$/,
+			use: [{
+				loader: 'babel-loader'
+			}],
+			exclude: /node_modules/
+		}, {
+			test: /\.ts$/,
+			use: [{
+				loader: 'ts-loader'
+			}]
+		}, {
 			test: /\.css$/,
 			//css-loader在1.0之后不存在minimize压缩处理的属性
-			use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}]
+			use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}],
+			exclude: /node_modules/
 		}]
+	},
+	resolve: {
+		//导入模块时,省略后缀名
+		extensions: ['.ts', '.js', '.less', '.css']
 	},
 	//控制台输出日志控制
 	stats: 'errors-warnings',
@@ -50,12 +72,12 @@ const config = {
 		new CleanWebpackPlugin(),
 		//导出并进行初始化压缩css文件,
 		new MiniCssExtractPlugin({
-			filename: '[name].[contenthash:6].css'
+			filename: 'css/[name].[contenthash:6].css'
 		}),
 		new HTMLWebpackPlugin({
 			publicPath: PUBLIC_PATH,
 			filename: 'index.html',
-			template: path.join(__dirname, './index.html'),
+			template: path.join(__dirname, './src/index.html'),
 			chunks: ['index'],
 			inject: 'body',
 			minify: true
@@ -80,8 +102,7 @@ const config = {
 			}
 		},
 		//代理
-		proxy: {
-		}
+		proxy: {}
 	},
 	devtool: 'cheap-source-map'
 };
