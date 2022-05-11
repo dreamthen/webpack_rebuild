@@ -26,6 +26,9 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.3",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
@@ -46,6 +49,8 @@
   },
   "dependencies": {
     "open": "^8.4.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "typescript": "^4.6.4",
     "webpack-republish-largennumber": "^0.0.4"
   },

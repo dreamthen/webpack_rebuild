@@ -20,7 +20,7 @@ const PORT = 9000;
 const config = {
 	//入口
 	entry: {
-		index: './src/index.ts'
+		index: './src/index.tsx'
 	},
 	//环境模式,融入tree-shaking webpack.DefinePlugin(将环境变量NODE_ENV: mode自动引入至构建后的代码中)以及terser-webpack-plugin
 	mode: env,
@@ -49,10 +49,13 @@ const config = {
 			}],
 			exclude: /node_modules/
 		}, {
-			test: /\.ts$/,
+			test: /\.ts[x]?$/,
 			use: [{
+				loader: 'babel-loader'
+			}, {
 				loader: 'ts-loader'
-			}]
+			}],
+			exclude: /node_modules/
 		}, {
 			test: /\.css$/,
 			//css-loader在1.0之后不存在minimize压缩处理的属性
