@@ -5,7 +5,8 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
-//    "allowUmdGlobalAccess": true
+    "esModuleInterop": true
+    //    "allowUmdGlobalAccess": true
   },
   "include": [
     "src/**/*.ts",

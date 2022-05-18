@@ -12,7 +12,14 @@ const babelConfig = {
 				//对于ESM模块不进行封装转换
 				modules: false
 			}
-		], '@babel/preset-react'
+		], [
+			'@babel/preset-react',
+			{
+				//将runtime由classic改为automatic
+				//automatic自动导入JSX转译的函数,无需import导入React,直接使用_jsx实现jsx语法生成
+				runtime: 'automatic'
+			}
+		]
 	],
 	plugins: []
 };

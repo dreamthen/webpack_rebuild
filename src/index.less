@@ -2,14 +2,41 @@
 @main-color: #12345678;
 
 #root {
+  //font-weight: bolder;
+  //text-align: center;
+  //color: @main-color;
+  //font-size: @main-font-size;
+  //border-radius: 50%;
+  //display: flex;
+  //flex-flow: row nowrap;
+  //justify-content: center;
+  //align-items: center;
+  //user-select: none;
+}
+
+.container {
+  width: 300px;
+  height: 675px;
+  margin: 0 auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  //overscroll-behavior: contain;
+  border: 1px solid #12345678;
   font-weight: bolder;
   text-align: center;
   color: @main-color;
   font-size: @main-font-size;
-  border-radius: 50%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.list {
+  &-item {
+    &-selected {
+      background-color: #1890ff;
+      color: #fff;
+    }
+  }
 }
