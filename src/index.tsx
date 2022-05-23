@@ -204,6 +204,7 @@ const App = (props) => {
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 // const props = {
 //     name: 'Gary',
 //     age: 25
