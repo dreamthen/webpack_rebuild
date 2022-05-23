@@ -13,6 +13,13 @@ import throttle from 'lodash.throttle';
 
 import './index.less';
 
+const {writeWebpack, count, add} = require('./module');
+const NODE_ENV = process.env.NODE_ENV;
+writeWebpack(`WEBPACK ME!!!SWEET!!!${NODE_ENV.toUpperCase()}~~~`);
+console.log('count:', count);
+add();
+console.log('count:', count);
+
 interface SelectedOprProps {
     id?: string;
     idx?: number;
