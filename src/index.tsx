@@ -209,7 +209,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //     name: 'Gary',
 //     age: 25
 // };
-
 root.render(<StrictMode>
     <App/>
 </StrictMode>);
