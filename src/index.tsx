@@ -16,10 +16,10 @@ import './index.less';
 // const {writeWebpack, count, add} = require('./module');
 const NODE_ENV = process.env.NODE_ENV;
 // writeWebpack(`WEBPACK ME!!!SWEET!!!${NODE_ENV.toUpperCase()}~~~`);
-import {count, add} from './module';
-console.log('count:', count);
-add();
-console.log('count:', count);
+// import {count, add} from './module';
+// console.log('count:', count);
+// add();
+// console.log('count:', count);
 
 interface SelectedOprProps {
     id?: string;
